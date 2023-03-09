@@ -27,6 +27,11 @@ RSpec.describe BowlingGame do
     roll_many(0, 17)
     expect(subject.score).to eq(16)
   end
+
+  it 'should return the correct score when a strike is rolled' do
+    subject.roll(10)
+    2.times { subject.roll(1) }
+    roll_many(0, 17)
+    expect(subject.score).to eq(14)
+  end
 end
-
-

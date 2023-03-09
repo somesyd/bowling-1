@@ -18,6 +18,11 @@ class BowlingGame
     frames = 10
 
     frames.times do
+      if strike?(roll_index)
+        score += strike_bonus(roll_index)
+        roll_index += 1
+        next
+      end
       frame_score = @rolls[roll_index] + @rolls[roll_index + 1]
       if spare?(frame_score)
         score += spare_bonus(roll_index)
@@ -35,5 +40,13 @@ class BowlingGame
 
   def spare_bonus(roll_index)
     10 + @rolls[roll_index + 2]
+  end
+
+  def strike?(roll_index)
+    @rolls[roll_index] == 10
+  end
+
+  def strike_bonus(roll_index)
+    10 + @rolls[roll_index + 1] + @rolls[roll_index + 2]
   end
 end
